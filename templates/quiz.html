@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question {{ qno }} — QuizSpark</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+
+    <!-- counter + timer -->
+    <div class="quiz-header">
+      <span class="q-counter">Q {{ qno }} / {{ total }}</span>
+      <div id="timer">30</div>
+      <span class="difficulty-badge difficulty-{{ question.difficulty }}">
+        {{ question.difficulty }}
+      </span>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+
+    <!-- Question text -->
+    <p class="question-text">{{ question.question }}</p>
+
+    
+    <form method="POST" id="quizForm">
+      <input type="hidden" name="option" id="selectedOption">
+    </form>
+
+   
+    <div id="correctAnswerData" data-correct="{{ question.answer }}" style="display:none"></div>
+    <div id="qnoData"           data-qno="{{ qno }}"                style="display:none"></div>
+    <div id="totalData"         data-total="{{ total }}"            style="display:none"></div>
+
+    <!-- Options -->
+    <div class="options-list">
+      {% set letters = ['A', 'B', 'C', 'D'] %}
+      {% for opt in question.options %}
+      <button class="option-btn"
+              data-value="{{ opt }}"
+              onclick="submitAnswer(this.dataset.value)">
+        <span class="opt-letter">{{ letters[loop.index0] }}</span>
+        {{ opt }}
+      </button>
+      {% endfor %}
+    </div>
+
+  </div>
+  <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+</body>
+</html>
