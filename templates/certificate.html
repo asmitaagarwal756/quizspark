@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate — QuizSpark</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="certificate">
+    <span class="cert-logo">🏆</span>
+    <p class="cert-title">Certificate of Achievement</p>
+    <p class="cert-headline">QuizSpark</p>
+
+    <div class="cert-divider"></div>
+
+    <p class="cert-body">This certifies that</p>
+    <p class="cert-name">{{ name }}</p>
+    <p class="cert-body">
+      has successfully completed the<br>
+      <strong>{{ category }}</strong> quiz
+    </p>
+
+    <div class="cert-score-box">
+      <span class="cert-score-big">{{ score }}/{{ total }}</span>
+      <div class="cert-score-label">
+        Questions<br>Correct
+      </div>
+    </div>
+
+    <div class="cert-divider"></div>
+
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px">
+      <a href="/replay"    class="btn btn-primary">🔄 Play Again</a>
+      <a href="/"          class="btn btn-ghost">🏠 Home</a>
+    </div>
+
+    <p class="cert-footer">QuizSpark • Powered by Open Trivia DB</p>
+  </div>
+  <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+</body>
+</html>
