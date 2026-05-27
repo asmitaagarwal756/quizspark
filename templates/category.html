@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pick a Category — QuizSpark</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Hi, {{ session['username'] }}! 👋</h2>
+    <p class="subtitle">Pick a category to begin</p>
+
+    <p class="category-title">Choose your topic</p>
+    <div class="category-grid">
+      {% for cat in categories %}
+      {% set parts = cat.split(' ', 1) %}
+      <a class="category-card" href="/quiz/{{ cat }}">
+        <span class="cat-emoji">{{ parts[0] }}</span>
+        <span class="cat-label">{{ parts[1] if parts|length > 1 else cat }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+</body>
+</html>
